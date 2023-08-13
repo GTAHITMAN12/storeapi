@@ -7,6 +7,8 @@ export class StoreDto {
     name:string;
     @IsNumber()
     price:number;
+    @IsNumber()
+    target_sale:number;
     @IsString()
     description:string;
     @IsNumber()
