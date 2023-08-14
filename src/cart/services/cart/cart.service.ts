@@ -19,8 +19,8 @@ export class CartService {
     async addcart(Cart : CartEntity):Promise<CartEntity>{
         return await this.SRepository.query('INSERT INTO CartEntity(store_id) VALUES (?)',[Cart.store_id]);
     }
-    async Removecart(id : number):Promise<any>{
-        return await this.SRepository.query('DELETE FROM CartEntity WHERE CartEntity.id=?',[id]);
+    async Removecart( ):Promise<any>{
+        return await this.SRepository.query('TRUNCATE TABLE CartEntity  ' );
     }
     findcart(id : number):Promise<any>{
         return this.SRepository.query('Select * From CartEntity WHERE CartEntity.id=?',[id]);
