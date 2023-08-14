@@ -21,9 +21,9 @@ export class CartController {
         Cart.store_id= cart.store_id;
         return await this.CartService.addcart(Cart);
     }
-    @Delete(':id')  // DELETE /order/123
-    async deletecart(@Param('id') id: number): Promise<any> {
-        await this.CartService.Removecart(id);
+    @Delete()  // DELETE /order/123
+    async deletecart(): Promise<any> {
+        await this.CartService.Removecart();
         return { success: true };
     }    
 }
