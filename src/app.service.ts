@@ -11,7 +11,7 @@ export class AppService {
   }
   async getsaledetail()  :Promise<any>{
     return await this.manage.query(`
-      SELECT OrderEntity.store_id,OrderEntity.name,OrderEntity.price,OrderEntity.price*COUNT(OrderEntity.store_id) as actural_sale,StoreEntity.target_sale,COUNT(OrderEntity.store_id) as sale_count
+      SELECT OrderEntity.store_id,StoreEntity.name,OrderEntity.price,OrderEntity.price*COUNT(OrderEntity.store_id) as actural_sale,StoreEntity.target_sale,COUNT(OrderEntity.store_id) as sale_count
       FROM  StoreEntity,OrderEntity
       WHERE StoreEntity.id=OrderEntity.store_id
       GROUP BY StoreEntity.id`)

@@ -6,6 +6,7 @@ import { OrderEntity } from './order/entity/order.entity/order.entity';
 import { StoreEntity } from './store/entity/store.entity/store.entity';
 import { StoreModule } from './store/store.module';
 import { OrderModule } from './order/order.module';
+import { CartModule } from './cart/cart.module';
 
 
 
@@ -19,6 +20,7 @@ import { OrderModule } from './order/order.module';
     }),
     StoreModule,
     OrderModule,
+    CartModule,
 
   ],
   controllers: [AppController],
