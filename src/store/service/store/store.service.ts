@@ -15,6 +15,9 @@ export class StoreService {
     async AddStoreS(store : StoreEntity):Promise<StoreEntity>{
         return await this.SRepository.query('INSERT INTO StoreEntity(name, price, target_sale, description, stock) VALUES (?, ?, ?, ?, ?)',[store.name,store.price,store.target_sale,store.description,store.stock]);
     }
+    async AddStorebyid(store : StoreEntity,id :number):Promise<StoreEntity>{
+        return await this.SRepository.query('INSERT INTO StoreEntity(id,name, price, target_sale, description, stock) VALUES (?, ?, ?, ?, ?, ?)',[id,store.name,store.price,store.target_sale,store.description,store.stock]);
+    }
     async RemoveStoreS(id : number):Promise<any>{
         return await this.SRepository.query('DELETE FROM StoreEntity WHERE StoreEntity.id=?',[id]);
     }

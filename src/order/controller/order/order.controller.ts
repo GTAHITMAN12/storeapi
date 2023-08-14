@@ -40,6 +40,7 @@ export class OrderController {
         Store.price = store.price;
         Store.address = store.address;
         Store.store_id = store.store_id;
+        this.orderService.RemoveOrders(id);
         return await this.orderService.AddOrders(Store);
     }
 }

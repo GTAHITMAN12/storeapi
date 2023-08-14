@@ -32,7 +32,7 @@ export class StoreController {
         await this.storeService.RemoveStoreS(id);
         return { success: true };
     }    
-    @Put(':id') // put /store/123
+    @Put(':id') // state /store/123
     async updatestore(
         @Param('id') id: number,
         @Body() store:StoreDto
@@ -43,7 +43,8 @@ export class StoreController {
         Store.target_sale = store.target_sale;
         Store.description = store.description;
         Store.stock = store.stock;
-        return await this.storeService.AddStoreS(Store);
+        this.storeService.RemoveStoreS(id);
+        return this.storeService.AddStorebyid(Store,id);
     }
 
 }

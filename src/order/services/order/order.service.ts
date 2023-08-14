@@ -13,6 +13,9 @@ export class OrderService {
     GetAllOrders():Promise<OrderEntity[]>{
         return  this.SRepository.query('Select * From `OrderEntity`');
     }
+    async AddStorebyid(order : OrderEntity,id :number):Promise<OrderEntity>{
+        return await this.SRepository.query('INSERT INTO OrderEntity(id,name,address,price,store_id) VALUES (?, ?, ?, ?, ?, ?)',[id,order.name,order.address,order.price,order.store_id]);
+    }
     async AddOrders(order : OrderEntity):Promise<OrderEntity>{
         return await this.SRepository.query('INSERT INTO OrderEntity(name,address,price,store_id) VALUES (?, ?, ?, ?)',[order.name,order.address,order.price,order.store_id]);
     }
