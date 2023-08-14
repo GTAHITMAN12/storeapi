@@ -2,11 +2,13 @@ import { Controller } from '@nestjs/common';
 import { Body,Delete,Get, HttpCode, HttpStatus, Param, Post, Put } from '@nestjs/common';
 import { CartDto } from 'src/cart/dto/cart.dto/cart-dto/cart-dto';
 import { CartEntity } from 'src/cart/entity/cart.entity/cart.entity';
+import { CartService } from 'src/cart/services/cart/cart.service';
+ 
 @Controller('cart')
 export class CartController {
-    CartService: any;
+    constructor(private readonly CartService : CartService){}
     @Get()
-    async GetAllcart():Promise<any[]>{
+    async getcart():Promise<any[]>{
         return this.CartService.GetAllcart();
     }
     @Get(':id')// get /order/123
