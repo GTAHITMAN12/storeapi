@@ -16,12 +16,10 @@ export class CartController {
         return this.CartService.findcart(id);
     }      
 
-    @Post('/addcart')
+    @Post('/addnew')
     @HttpCode(HttpStatus.CREATED)
-    async addnewstoreitem(@Body() cart:CartDto): Promise<any>{
-        const Cart = new CartEntity();
-        Cart.store_id= cart.store_id;
-        return await this.CartService.addcart(Cart);
+    async addnewstoreitem(@Body('store_id') store_id: any): Promise<any>{
+       return await this.CartService.addcart(store_id);
     }
     @Delete()  // DELETE /order/123
     async deletecart(): Promise<any> {

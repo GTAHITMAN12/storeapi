@@ -11,13 +11,13 @@ export class CartService {
         private SRepository:Repository<CartEntity>, 
     ){}
     GetAllcart():Promise<CartEntity[]>{
-        return  this.SRepository.query('Select * From `CartEntity`');
+        return  this.SRepository.query(`SELECT CartEntity.id,StoreEntity.name,StoreEntity.price ,COUNT(StoreEntity.id) as count
+        FROM  StoreEntity,CartEntity
+        WHERE StoreEntity.id=CartEntity.store_id
+        GROUP BY StoreEntity.id`);
     }
-    async addcartbyid(Cart : CartEntity,id :number):Promise<CartEntity>{
-        return await this.SRepository.query('INSERT INTO CartEntity(id,store_id) VALUES (?, ?)',[id,Cart.store_id]);
-    }
-    async addcart(Cart : CartEntity):Promise<CartEntity>{
-        return await this.SRepository.query('INSERT INTO CartEntity(store_id) VALUES (?)',[Cart.store_id]);
+    async addcart(id:number):Promise<any>{
+        return await this.SRepository.query('INSERT INTO CartEntity(store_id) VALUES (?)',[id]);
     }
     async Removecart( ):Promise<any>{
         return await this.SRepository.query('TRUNCATE TABLE CartEntity  ' );
