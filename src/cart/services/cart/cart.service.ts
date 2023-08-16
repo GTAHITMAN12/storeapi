@@ -20,7 +20,8 @@ export class CartService {
         return await this.SRepository.query('INSERT INTO CartEntity(store_id) VALUES (?)',[id]);
     }
     async Removecart( ):Promise<any>{
-        return await this.SRepository.query('TRUNCATE TABLE CartEntity  ' );
+         this.SRepository.query('DELETE FROM CartEntity' );
+         return await this.SRepository.query('ALTER TABLE CartEntity AUTO_INCREMENT = 1;' );
     }
     findcart(id : number):Promise<any>{
         return this.SRepository.query('Select * From CartEntity WHERE CartEntity.id=?',[id]);
